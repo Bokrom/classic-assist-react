@@ -1,0 +1,1 @@
+﻿mongoimport -d local -c items --file '/home/zak/Google Drive/Projects/Classic WoW Character Planner/JSON files/items.json' --jsonArray
