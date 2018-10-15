@@ -9,9 +9,9 @@ const Items = new Mongo.Collection('Items');
 const ItemSchema = new SimpleSchema({
   
 // Basic item classification
-  itemID: Number,
-  itemName: String,
-  itemClass: {
+  id: Number,
+  name: String,
+  class: {
     type: String,
     allowedValues: ['Ammo', 'Ammo Container', 'Armor', 'Weapon']
   },
@@ -39,8 +39,8 @@ const ItemSchema = new SimpleSchema({
     type: String,
     allowedValues: ['Poor', 'Common', 'Uncommon', 'Rare', 'Epic', 'Legendary']
   },
-  itemLevel: Number,
-  itemSet: Number,
+  level: Number,
+  set: Number,
   randomProperty: Number,
   unique: Boolean,
   sheath: Number,
@@ -55,12 +55,12 @@ const ItemSchema = new SimpleSchema({
   description: String,
 
 // Info for icons, models, and textures
-  displayID: Number,
+  displayId: Number,
 
 // Equip slot
   inventoryType: {
     type: String,
-    allowedValues: ['Relic', 'Ammo', 'Ammo Container', 'Ranged', 'Held in Off-Hand', 'Main-hand', 'One-hand', 'Off-hand', 'Shield', 'Tabard', 'Shirt', 'Head', 'Neck', 'Shoulder', 'Back', 'Chest', 'Wrist', 'Hands', 'Waist', 'Legs', 'Feet', 'Finger', 'Trinket']
+    allowedValues: ['Relic', 'Ammo', 'Ammo Container', 'Ranged', 'Held in Off-Hand', 'Main-hand', 'One-hand', 'Off-hand', 'Two-hand', 'Shield', 'Tabard', 'Shirt', 'Head', 'Neck', 'Shoulder', 'Back', 'Chest', 'Wrist', 'Hands', 'Waist', 'Legs', 'Feet', 'Finger', 'Trinket']
   },
 
 // Base stats
@@ -194,12 +194,21 @@ const ItemSchema = new SimpleSchema({
     type: String,
     allowedValues: ['Horde', 'Alliance']
   },
-  requiredLevel: Number,
-  requiredSkill: Number,
+  requiredSkill: {
+    type: String,
+    allowedValues: ['Fishing', 'Engineering', 'Mining', 'Herbalism']
+  },
+  requiredSkillSpec: {
+    type: String,
+    allowedValues: ['Goblin Engineer', 'Gnomish Engineer']
+  },
   requiredSkillRank: Number,
-  requiredSpell: Number,
+  requiredLevel: Number,
   requiredHonorRank: Number,
-  requiredReputationFaction: Number,
+  requiredReputationFaction: {
+    type: String,
+    allowedValues: ['Brood of Nozdormu', 'Silverwing Sentinels', 'Warsong Outriders', 'Stormpike Guard', 'Frostwolf Clan', 'Timbermaw Hold', 'The Defilers', 'The League of Arathor']
+  },
   requiredReputationRank: {
     type: String,
     allowedValues: ['Neutral', 'Friendly', 'Honored', 'Revered', 'Exalted']

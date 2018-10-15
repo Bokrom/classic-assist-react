@@ -1,0 +1,1 @@
+load("mongoScripts/quality.js");
