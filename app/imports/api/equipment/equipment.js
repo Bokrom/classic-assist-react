@@ -3,10 +3,10 @@ import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
 /** Create a Meteor collection. */
-const Items = new Mongo.Collection('Items');
+const Equipments = new Mongo.Collection('Equipments');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
-const ItemSchema = new SimpleSchema({
+const EquipmentSchema = new SimpleSchema({
   
 // Basic item classification
   id: Number,
@@ -214,10 +214,10 @@ const ItemSchema = new SimpleSchema({
     allowedValues: ['Neutral', 'Friendly', 'Honored', 'Revered', 'Exalted']
   }
 
-}, { tracker: Tracker });
+}, { requiredByDefault: false }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
-Items.attachSchema(ItemSchema);
+Equipments.attachSchema(EquipmentSchema);
 
 /** Make the collection and schema available to other code. */
-export { Items, ItemSchema };
+export { Equipments, EquipmentSchema };

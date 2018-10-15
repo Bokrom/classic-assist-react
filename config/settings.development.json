@@ -9,5 +9,12 @@
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+  ],
+
+  "defaultEquipmentData": [
+    { "name": "Sword", "quality": "Common", "inventoryType": "Main-hand", "class": "Weapon" },
+    { "name": "Helmet", "quality": "Rare", "inventoryType": "Head", "class": "Armor" },
+    { "name": "Dagger", "quality": "Epic", "inventoryType": "Off-hand", "class": "Weapon" },
+    { "name": "Doodad", "quality": "Uncommon", "inventoryType": "Trinket", "class": "Armor" }
   ]
 }
