@@ -1,12 +1,12 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Container, Table, Header, Loader } from 'semantic-ui-react';
+import { Container, Table, Header, Loader, Pagination } from 'semantic-ui-react';
 import { Equipments } from '/imports/api/equipment/equipment';
 import EquipmentItem from '/imports/ui/components/EquipmentItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 
-/** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/** Renders a table containing all of the Equipment documents. Use <EquipmentItem> to render each row. */
 class ListEquipment extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
@@ -32,12 +32,13 @@ class ListEquipment extends React.Component {
               {this.props.equipments.map((equipment) => <EquipmentItem key={equipment._id} equipment={equipment} />)}
             </Table.Body>
           </Table>
+          <Pagination defaultActivePage={1} totalPages={10} />
         </Container>
     );
   }
 }
 
-/** Require an array of Stuff documents in the props. */
+/** Require an array of Equipment documents in the props. */
 ListEquipment.propTypes = {
   equipments: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
@@ -45,10 +46,10 @@ ListEquipment.propTypes = {
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
 export default withTracker(() => {
-  // Get access to Stuff documents.
+  // Get access to Equipment documents.
   const subscription = Meteor.subscribe('Equipment');
   return {
-    equipments: Equipments.find({}).fetch(),
+    equipments: Equipments.find({}, {limit: 20}).fetch(),
     ready: subscription.ready(),
   };
 })(ListEquipment);
