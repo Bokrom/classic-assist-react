@@ -2,13 +2,11 @@ import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 import { Tracker } from 'meteor/tracker';
 
-/** Create a Meteor collection. */
 const Equipments = new Mongo.Collection('Equipments');
 
-/** Create a schema to constrain the structure of documents associated with this collection. */
 const EquipmentSchema = new SimpleSchema({
-  
-// Basic item classification
+
+  // Basic item classification
   id: Number,
   name: String,
   class: {
@@ -45,25 +43,25 @@ const EquipmentSchema = new SimpleSchema({
   unique: Boolean,
   sheath: Number,
 
-// For quest rewards with no required level
+  // For quest rewards with no required level
   obtainableLevel: Number,
 
-// (seconds)
+  // (seconds)
   onUseCooldown: Number,
 
-// Flavor text
+  // Flavor text
   description: String,
 
-// Info for icons, models, and textures
+  // Info for icons, models, and textures
   displayId: Number,
 
-// Equip slot
+  // Equip slot
   inventoryType: {
     type: String,
     allowedValues: ['Relic', 'Ammo', 'Ammo Container', 'Ranged', 'Held in Off-Hand', 'Main-hand', 'One-hand', 'Off-hand', 'Two-hand', 'Shield', 'Tabard', 'Shirt', 'Head', 'Neck', 'Shoulder', 'Back', 'Chest', 'Wrist', 'Hands', 'Waist', 'Legs', 'Feet', 'Finger', 'Trinket']
   },
 
-// Base stats
+  // Base stats
   agility: Number,
   intellect: Number,
   spirit: Number,
@@ -71,8 +69,8 @@ const EquipmentSchema = new SimpleSchema({
   strength: Number,
   armor: Number,
   block: Number,
-  
-// Base weapon stats  
+
+  // Base weapon stats  
   delay: Number,  //(milliseconds)
 
   dmgMin1: Number,
@@ -88,7 +86,7 @@ const EquipmentSchema = new SimpleSchema({
     allowedValues: ['Physical', 'Holy', 'Fire', 'Nature', 'Frost', 'Shadow', 'Arcane']
   },
 
-// Bonus effects
+  // Bonus effects
   critical: Number,
   criticalRanged: Number,
   criticalSpell: Number,
@@ -177,14 +175,17 @@ const EquipmentSchema = new SimpleSchema({
   equipMisc: String,
   onUse: String,
 
-// Resistances
+  // Resistances
   arcaneResist: Number,
   fireResist: Number,
   frostResist: Number,
   natureResist: Number,
   shadowResist: Number,
 
-// Requirements
+  // Requirements
+  requiredSkillRank: Number,
+  requiredLevel: Number,
+  requiredHonorRank: Number,
   requiredPlayerClass: Array,
   'requiredPlayerClass.$': {
     type: String,
@@ -202,9 +203,6 @@ const EquipmentSchema = new SimpleSchema({
     type: String,
     allowedValues: ['Goblin Engineer', 'Gnomish Engineer']
   },
-  requiredSkillRank: Number,
-  requiredLevel: Number,
-  requiredHonorRank: Number,
   requiredReputationFaction: {
     type: String,
     allowedValues: ['Brood of Nozdormu', 'Silverwing Sentinels', 'Warsong Outriders', 'Stormpike Guard', 'Frostwolf Clan', 'Timbermaw Hold', 'The Defilers', 'The League of Arathor']
@@ -216,8 +214,6 @@ const EquipmentSchema = new SimpleSchema({
 
 }, { requiredByDefault: false }, { tracker: Tracker });
 
-/** Attach this schema to the collection. */
 Equipments.attachSchema(EquipmentSchema);
 
-/** Make the collection and schema available to other code. */
 export { Equipments, EquipmentSchema };
