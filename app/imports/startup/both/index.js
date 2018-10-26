@@ -1,1 +1,1 @@
-import '/imports/api/equipment';
+import '../../api/equipment/equipment.js';

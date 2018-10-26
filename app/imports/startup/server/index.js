@@ -1,2 +1,2 @@
 import './accounts.js';
-import './equipment.js';
+import '../../api/methods.js';
